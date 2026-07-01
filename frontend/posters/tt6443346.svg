@@ -1,0 +1,22 @@
+<svg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F1F1C"/>
+      <stop offset="100%" stop-color="#0B0B0F"/>
+    </linearGradient>
+    <linearGradient id="vign" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.65"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="600" fill="url(#bg)"/>
+  <g>
+        <polygon points="200,180 260,320 200,420 140,320" fill="#2ECC71" opacity="0.18"/>
+        <circle cx="200" cy="300" r="120" fill="none" stroke="#2ECC71" stroke-width="2" opacity="0.4"/>
+        </g>
+  <rect width="400" height="600" fill="url(#vign)"/>
+  <rect x="0" y="0" width="400" height="600" fill="none" stroke="#2ECC71" stroke-opacity="0.25" stroke-width="6"/>
+  <text x="200" y="500" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="28" fill="#F5F5F0" letter-spacing="2">HIDDEN NATION</text>
+  <text x="200" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" letter-spacing="3" fill="#2ECC71">FOREVER</text>
+  <rect x="170" y="552" width="60" height="3" fill="#2ECC71" opacity="0.6"/>
+</svg>

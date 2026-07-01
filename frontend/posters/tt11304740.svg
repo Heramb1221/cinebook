@@ -1,0 +1,19 @@
+<svg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241313"/>
+      <stop offset="100%" stop-color="#0B0B0F"/>
+    </linearGradient>
+    <linearGradient id="vign" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.65"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="600" fill="url(#bg)"/>
+  <g><polygon points="60,200 120,180 100,320" fill="#FFB800" opacity="0.15"/><polygon points="85,220 145,195 125,330" fill="#FFB800" opacity="0.19"/><polygon points="110,240 170,210 150,340" fill="#FFB800" opacity="0.22999999999999998"/><polygon points="135,260 195,225 175,350" fill="#FFB800" opacity="0.27"/><polygon points="160,280 220,240 200,360" fill="#FFB800" opacity="0.31"/><polygon points="185,300 245,255 225,370" fill="#FFB800" opacity="0.35"/><polygon points="210,320 270,270 250,380" fill="#FFB800" opacity="0.39"/><polygon points="235,340 295,285 275,390" fill="#FFB800" opacity="0.43000000000000005"/></g>
+  <rect width="400" height="600" fill="url(#vign)"/>
+  <rect x="0" y="0" width="400" height="600" fill="none" stroke="#FFB800" stroke-opacity="0.25" stroke-width="6"/>
+  <text x="200" y="500" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="38" fill="#F5F5F0" letter-spacing="2">VENDETTA</text>
+  <text x="200" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" letter-spacing="3" fill="#FFB800">ONE MAN. ONE MISSION.</text>
+  <rect x="170" y="552" width="60" height="3" fill="#FFB800" opacity="0.6"/>
+</svg>

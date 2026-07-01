@@ -1,0 +1,23 @@
+<svg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A1430"/>
+      <stop offset="100%" stop-color="#0B0B0F"/>
+    </linearGradient>
+    <linearGradient id="vign" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.65"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="600" fill="url(#bg)"/>
+  <g>
+        <circle cx="200" cy="380" r="140" fill="none" stroke="#FF8A3D" stroke-width="2" opacity="0.5"/>
+        <circle cx="200" cy="380" r="95" fill="none" stroke="#FF8A3D" stroke-width="1.5" opacity="0.35"/>
+        <circle cx="320" cy="280" r="10" fill="#FF8A3D"/>
+        </g>
+  <rect width="400" height="600" fill="url(#vign)"/>
+  <rect x="0" y="0" width="400" height="600" fill="none" stroke="#FF8A3D" stroke-opacity="0.25" stroke-width="6"/>
+  <text x="200" y="500" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="28" fill="#F5F5F0" letter-spacing="2">BEYOND THE STARS</text>
+  <text x="200" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" letter-spacing="3" fill="#FF8A3D">MANKIND'S NEXT STEP</text>
+  <rect x="170" y="552" width="60" height="3" fill="#FF8A3D" opacity="0.6"/>
+</svg>

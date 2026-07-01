@@ -1,0 +1,368 @@
+/* =========================================================
+   CineBook — design tokens
+   Palette: near-black cinema backdrop, marquee red CTA,
+            marquee gold accent for ratings/premium/screen glow
+   Type: Bebas Neue (display, marquee lettering) + Inter (UI)
+   ========================================================= */
+:root {
+  --bg: #0B0B0F;
+  --surface: #1A1A22;
+  --surface-2: #232330;
+  --border: #2E2E3A;
+  --red: #E0263F;
+  --red-dim: #B81F34;
+  --gold: #FFB800;
+  --text: #F5F5F0;
+  --text-muted: #8A8A95;
+  --green: #2ECC71;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.brand, .hero-slide-title, .section-head h2, .movie-banner-title, .seat-header h2 {
+  font-family: 'Bebas Neue', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+}
+
+.hidden { display: none !important; }
+
+h1, h2, h3 { margin: 0; }
+
+button { font-family: inherit; cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ---------------- Header ---------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(11,11,15,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: var(--text);
+  flex-shrink: 0;
+}
+.brand-accent { color: var(--red); }
+
+.header-search {
+  flex: 1;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 9px 16px;
+  color: var(--text-muted);
+  transition: border-color .15s;
+}
+.header-search:focus-within { border-color: var(--red); }
+.header-search input {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 14px;
+  width: 100%;
+}
+.header-search input::placeholder { color: var(--text-muted); }
+.icon-search { width: 16px; height: 16px; color: var(--text-muted); flex-shrink: 0; }
+
+.header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.btn-location {
+  display: flex; align-items: center; gap: 6px;
+  background: none; border: 1px solid var(--border); color: var(--text);
+  padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+}
+.btn-ghost {
+  background: var(--red); color: #fff; border: none;
+  padding: 9px 18px; border-radius: 999px; font-size: 13px; font-weight: 700;
+  transition: background .15s;
+}
+.btn-ghost:hover { background: var(--red-dim); }
+
+/* ---------------- Hero ---------------- */
+.hero { position: relative; height: 420px; overflow: hidden; }
+.hero-carousel {
+  display: flex; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.hero-carousel::-webkit-scrollbar { display: none; }
+.hero-loading { color: var(--text-muted); margin: auto; font-size: 14px; }
+.hero-slide {
+  flex: 0 0 100%; scroll-snap-align: start; position: relative;
+  background-size: cover; background-position: center top;
+  display: flex; align-items: flex-end;
+}
+.hero-slide::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(0deg, var(--bg) 5%, rgba(11,11,15,0.55) 45%, rgba(11,11,15,0.15) 100%);
+}
+.hero-slide-content { position: relative; z-index: 1; padding: 40px 60px; max-width: 640px; }
+.hero-slide-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px; letter-spacing: 1px; line-height: 0.95; margin-bottom: 10px;
+}
+.hero-slide-meta { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;}
+.hero-rating { color: var(--gold); font-weight: 700; }
+.hero-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(0deg, var(--bg), transparent); pointer-events: none; }
+
+/* ---------------- Movie grid ---------------- */
+.movies-section { max-width: 1280px; margin: 0 auto; padding: 40px 24px 80px; }
+.section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; }
+.section-head h2 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.5px; }
+.section-sub { color: var(--text-muted); font-size: 13px; }
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 22px;
+}
+.movie-card {
+  cursor: pointer;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.movie-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--red-dim); }
+.movie-poster-wrap { position: relative; aspect-ratio: 2/3; overflow: hidden; background: var(--surface-2); }
+.movie-poster-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.movie-rating-badge {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(11,11,15,0.85); color: var(--gold);
+  font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 6px;
+  display: flex; align-items: center; gap: 3px;
+}
+.movie-card-body { padding: 12px 14px 16px; }
+.movie-card-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; line-height: 1.25; }
+.movie-card-meta { font-size: 12px; color: var(--text-muted); }
+
+/* ---------------- Movie detail / showtimes ---------------- */
+#movieView { max-width: 1280px; margin: 0 auto; padding: 16px 24px 100px; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: none; color: var(--text-muted);
+  font-size: 13px; font-weight: 600; padding: 10px 0; margin-bottom: 4px;
+}
+.back-btn:hover { color: var(--text); }
+
+.movie-banner {
+  border-radius: var(--radius-lg); overflow: hidden; position: relative;
+  min-height: 280px; background-size: cover; background-position: center;
+  display: flex; align-items: flex-end; margin-bottom: 32px;
+}
+.movie-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11,11,15,0.95) 20%, rgba(11,11,15,0.5) 70%, rgba(11,11,15,0.2)); }
+.movie-banner-content { position: relative; z-index: 1; padding: 32px; max-width: 600px; }
+.movie-banner-title { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 0.5px; line-height: 1; margin-bottom: 12px; }
+.movie-banner-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.tag { background: var(--surface-2); border: 1px solid var(--border); padding: 4px 10px; border-radius: 999px; font-size: 12px; color: var(--text-muted); }
+.movie-banner-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+.showtime-heading { font-size: 15px; font-weight: 700; margin: 28px 0 14px; }
+
+.date-strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
+.date-pill {
+  flex: 0 0 auto; min-width: 64px; text-align: center;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 10px 14px; font-size: 13px; font-weight: 600; color: var(--text-muted);
+  transition: all .15s;
+}
+.date-pill .dow { display: block; font-size: 10px; text-transform: uppercase; opacity: 0.7; margin-bottom: 2px; }
+.date-pill.active { background: var(--red); border-color: var(--red); color: #fff; }
+.date-pill:hover:not(.active) { border-color: var(--red-dim); color: var(--text); }
+
+.theatre-list { display: flex; flex-direction: column; gap: 14px; }
+.theatre-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px 20px; }
+.theatre-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.theatre-name { font-weight: 700; font-size: 15px; }
+.theatre-info { font-size: 12px; color: var(--text-muted); }
+.show-times { display: flex; gap: 10px; flex-wrap: wrap; }
+.time-pill {
+  background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+  padding: 8px 16px; border-radius: var(--radius); font-size: 13px; font-weight: 600;
+  transition: all .15s;
+}
+.time-pill:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ---------------- Seat selection ---------------- */
+#seatView { max-width: 900px; margin: 0 auto; padding: 16px 24px 140px; }
+.seat-header { text-align: center; margin-bottom: 28px; }
+.seat-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.5px; }
+.seat-header p { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+
+.seat-map-wrap { display: flex; flex-direction: column-reverse; align-items: center; gap: 28px; }
+.seat-map { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.seat-row { display: flex; align-items: center; gap: 8px; }
+.row-label { width: 18px; font-size: 12px; color: var(--text-muted); text-align: center; font-weight: 600; }
+.seat-group { display: flex; gap: 6px; }
+.seat-aisle { width: 18px; }
+
+.seat {
+  width: 26px; height: 26px; border-radius: 6px 6px 8px 8px;
+  border: 1.5px solid var(--border); background: transparent;
+  font-size: 9px; color: var(--text-muted); display: flex; align-items: center; justify-content: center;
+  transition: all .12s ease;
+}
+.seat.available.standard { border-color: #3F8CFF; color: #3F8CFF; }
+.seat.available.premium { border-color: var(--gold); color: var(--gold); }
+.seat.available.recliner { border-color: #C77DFF; color: #C77DFF; }
+.seat.available:hover { transform: scale(1.15); }
+.seat.selected { background: var(--red); border-color: var(--red); color: #fff; transform: scale(1.1); }
+.seat.taken { background: var(--surface-2); border-color: var(--surface-2); color: var(--text-muted); opacity: 0.4; cursor: not-allowed; }
+
+.legend-swatch.available.standard, .legend-swatch.available.premium, .legend-swatch.available.recliner { display:none; } /* simplified below */
+
+.screen-curve { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; max-width: 560px; }
+.screen-curve svg { width: 100%; height: 32px; }
+.screen-curve span { font-size: 10px; letter-spacing: 3px; color: var(--text-muted); }
+
+.seat-legend { display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; margin: 36px 0 0; }
+.legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); }
+.legend-swatch { width: 16px; height: 16px; border-radius: 4px 4px 5px 5px; border: 1.5px solid; display:inline-block; }
+.legend-item:nth-child(1) .legend-swatch { border-color: #3F8CFF; }
+.legend-item:nth-child(2) .legend-swatch { border-color: var(--gold); }
+.legend-item:nth-child(3) .legend-swatch { border-color: #C77DFF; }
+.legend-item:nth-child(4) .legend-swatch { background: var(--red); border-color: var(--red); }
+.legend-item:nth-child(5) .legend-swatch { background: var(--surface-2); border-color: var(--surface-2); opacity: 0.6; }
+
+.booking-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--surface); border-top: 1px solid var(--border);
+  padding: 16px 24px; display: flex; justify-content: space-between; align-items: center;
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.3); z-index: 40;
+}
+.booking-bar-info { display: flex; flex-direction: column; gap: 2px; }
+.booking-bar-info span { font-size: 12px; color: var(--text-muted); }
+.booking-bar-info strong { font-size: 20px; }
+
+.btn-primary {
+  background: var(--red); color: #fff; border: none; border-radius: var(--radius);
+  padding: 13px 32px; font-size: 14px; font-weight: 700; letter-spacing: 0.3px;
+  transition: background .15s, opacity .15s;
+}
+.btn-primary:hover:not(:disabled) { background: var(--red-dim); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-full { width: 100%; }
+
+/* ---------------- Modals ---------------- */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100; padding: 20px;
+}
+.modal {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 28px; max-width: 420px; width: 100%; position: relative;
+  box-shadow: var(--shadow); max-height: 90vh; overflow-y: auto;
+}
+.modal h3 { font-size: 19px; margin-bottom: 18px; }
+.modal-close {
+  position: absolute; top: 16px; right: 16px; background: none; border: none;
+  color: var(--text-muted); font-size: 22px; line-height: 1; width: 28px; height: 28px;
+}
+.modal-close:hover { color: var(--text); }
+
+.checkout-summary { background: var(--surface-2); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 20px; font-size: 13px; }
+.checkout-summary div { display: flex; justify-content: space-between; padding: 4px 0; color: var(--text-muted); }
+.checkout-summary div.total { color: var(--text); font-weight: 700; border-top: 1px solid var(--border); margin-top: 6px; padding-top: 10px; }
+
+#checkoutForm { display: flex; flex-direction: column; gap: 14px; }
+#checkoutForm label { font-size: 12px; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px; }
+#checkoutForm input {
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 11px 14px; color: var(--text); font-size: 14px; outline: none;
+}
+#checkoutForm input:focus { border-color: var(--red); }
+.checkout-note { font-size: 11px; color: var(--text-muted); text-align: center; margin: 14px 0 0; }
+
+.modal-confirm { text-align: center; }
+.confirm-check { margin: 0 auto 14px; }
+.modal-confirm p { color: var(--text-muted); font-size: 13px; margin-bottom: 18px; }
+.ticket-stub {
+  background: var(--surface-2); border: 1px dashed var(--border); border-radius: var(--radius);
+  padding: 14px; margin-bottom: 20px; text-align: left; font-size: 13px;
+}
+.ticket-stub div { display: flex; justify-content: space-between; padding: 3px 0; color: var(--text-muted); }
+.ticket-stub div strong { color: var(--text); }
+
+/* ---------------- My Tickets ---------------- */
+#ticketsView { max-width: 900px; margin: 0 auto; padding: 16px 24px 80px; }
+.tickets-head { display: flex; justify-content: space-between; align-items: center; margin: 20px 0 24px; }
+.tickets-head h2 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.5px; }
+.btn-danger-ghost {
+  background: none; border: 1px solid var(--red-dim); color: var(--red);
+  padding: 9px 16px; border-radius: var(--radius); font-size: 13px; font-weight: 600;
+}
+.btn-danger-ghost:hover { background: rgba(224,38,63,0.1); }
+
+.tickets-list { display: flex; flex-direction: column; gap: 14px; }
+.ticket-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+}
+.ticket-card-left { display: flex; flex-direction: column; gap: 4px; }
+.ticket-card-title { font-weight: 700; font-size: 15px; }
+.ticket-card-meta { font-size: 12px; color: var(--text-muted); }
+.ticket-card-seat { font-size: 12px; color: var(--gold); font-weight: 600; }
+.ticket-cancel-btn {
+  background: none; border: 1px solid var(--border); color: var(--text-muted);
+  padding: 7px 14px; border-radius: var(--radius); font-size: 12px; flex-shrink: 0;
+}
+.ticket-cancel-btn:hover { border-color: var(--red); color: var(--red); }
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+.empty-state svg { margin-bottom: 14px; opacity: 0.4; }
+
+/* ---------------- Toast ---------------- */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+  padding: 12px 22px; border-radius: 999px; font-size: 13px; z-index: 200;
+  box-shadow: var(--shadow); animation: toastIn .2s ease;
+}
+.toast.error { border-color: var(--red); color: #ff6b7d; }
+@keyframes toastIn { from { opacity:0; transform: translateX(-50%) translateY(10px);} to {opacity:1; transform: translateX(-50%) translateY(0);} }
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 720px) {
+  .header-inner { flex-wrap: wrap; gap: 10px; padding: 12px 16px; }
+  .header-search { display: none; }
+  .header-actions { gap: 8px; }
+  .btn-location { padding: 7px 10px; font-size: 12px; }
+  .btn-ghost { padding: 8px 14px; font-size: 12px; }
+  .hero { height: 320px; }
+  .hero-slide-title { font-size: 38px; }
+  .movie-banner-title { font-size: 32px; }
+  .seat { width: 22px; height: 22px; }
+  .booking-bar { padding: 14px 16px; }
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CineBook — Book Your Show</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="brand" onclick="goHome()">
+      <span class="brand-mark">CINE</span><span class="brand-mark brand-accent">BOOK</span>
+    </a>
+    <div class="header-search">
+      <svg class="icon-search" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="text" id="searchInput" placeholder="Search for movies..." autocomplete="off">
+    </div>
+    <div class="header-actions">
+      <button class="btn-location" id="locationBtn">
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="2"/></svg>
+        Mumbai
+      </button>
+      <button class="btn-ghost" id="myTicketsBtn" onclick="showMyTickets()">My Tickets</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HOME VIEW ============ -->
+<main id="homeView">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-carousel" id="heroCarousel">
+      <div class="hero-loading">Loading now showing…</div>
+    </div>
+    <div class="hero-fade"></div>
+  </section>
+
+  <!-- MOVIE GRID -->
+  <section class="movies-section">
+    <div class="section-head">
+      <h2>Recommended Movies</h2>
+      <span class="section-sub">Now showing in your city</span>
+    </div>
+    <div class="movie-grid" id="movieGrid">
+      <!-- cards injected by JS -->
+    </div>
+  </section>
+</main>
+
+<!-- ============ MOVIE DETAIL / SHOWTIME PICKER VIEW ============ -->
+<main id="movieView" class="hidden">
+  <button class="back-btn" onclick="goHome()">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back
+  </button>
+
+  <section class="movie-banner" id="movieBanner"></section>
+
+  <section class="showtime-section">
+    <h3 class="showtime-heading">Select date</h3>
+    <div class="date-strip" id="dateStrip"></div>
+
+    <h3 class="showtime-heading">Select cinema &amp; time</h3>
+    <div class="theatre-list" id="theatreList"></div>
+  </section>
+</main>
+
+<!-- ============ SEAT SELECTION VIEW ============ -->
+<main id="seatView" class="hidden">
+  <button class="back-btn" onclick="backToShowtimes()">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Change showtime
+  </button>
+
+  <div class="seat-header" id="seatHeader"></div>
+
+  <div class="seat-map-wrap">
+    <div class="seat-map" id="seatMap">
+      <!-- rows injected by JS -->
+    </div>
+    <div class="screen-curve">
+      <svg viewBox="0 0 600 40" preserveAspectRatio="none"><path d="M0,35 Q300,-5 600,35" stroke="url(#screenGrad)" stroke-width="3" fill="none"/><defs><linearGradient id="screenGrad" x1="0" x2="1"><stop offset="0" stop-color="#FFB800" stop-opacity="0.1"/><stop offset="0.5" stop-color="#FFB800" stop-opacity="0.9"/><stop offset="1" stop-color="#FFB800" stop-opacity="0.1"/></linearGradient></defs></svg>
+      <span>SCREEN THIS WAY</span>
+    </div>
+  </div>
+
+  <div class="seat-legend">
+    <div class="legend-item"><span class="legend-swatch available standard"></span> Standard ₹200</div>
+    <div class="legend-item"><span class="legend-swatch available premium"></span> Premium ₹350</div>
+    <div class="legend-item"><span class="legend-swatch available recliner"></span> Recliner ₹550</div>
+    <div class="legend-item"><span class="legend-swatch selected"></span> Selected</div>
+    <div class="legend-item"><span class="legend-swatch taken"></span> Sold</div>
+  </div>
+
+  <div class="booking-bar" id="bookingBar">
+    <div class="booking-bar-info">
+      <span id="selectedCount">0 seats selected</span>
+      <strong id="selectedPrice">₹0</strong>
+    </div>
+    <button class="btn-primary" id="proceedBtn" onclick="openCheckout()" disabled>Proceed to Pay</button>
+  </div>
+</main>
+
+<!-- ============ CHECKOUT MODAL ============ -->
+<div class="modal-overlay hidden" id="checkoutModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeCheckout()">&times;</button>
+    <h3>Confirm your booking</h3>
+    <div class="checkout-summary" id="checkoutSummary"></div>
+    <form id="checkoutForm">
+      <label>Full name
+        <input type="text" id="custName" required placeholder="Heramb Chaudhari">
+      </label>
+      <label>Email
+        <input type="email" id="custEmail" required placeholder="you@example.com">
+      </label>
+      <button type="submit" class="btn-primary btn-full">Pay &amp; Book Tickets</button>
+    </form>
+    <p class="checkout-note">This is a demo checkout — no real payment is processed.</p>
+  </div>
+</div>
+
+<!-- ============ BOOKING CONFIRMED MODAL ============ -->
+<div class="modal-overlay hidden" id="confirmModal">
+  <div class="modal modal-confirm">
+    <div class="confirm-check">
+      <svg viewBox="0 0 52 52" width="56" height="56"><circle cx="26" cy="26" r="25" fill="none" stroke="#2ECC71" stroke-width="2"/><path fill="none" stroke="#2ECC71" stroke-width="3" stroke-linecap="round" d="M14 27l8 8 16-16"/></svg>
+    </div>
+    <h3>Booking Confirmed!</h3>
+    <p id="confirmSub">Your tickets are booked.</p>
+    <div class="ticket-stub" id="ticketStub"></div>
+    <button class="btn-primary btn-full" onclick="closeConfirm()">Done</button>
+  </div>
+</div>
+
+<!-- ============ MY TICKETS VIEW ============ -->
+<main id="ticketsView" class="hidden">
+  <button class="back-btn" onclick="goHome()">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back
+  </button>
+  <div class="tickets-head">
+    <h2>My Tickets</h2>
+    <button class="btn-danger-ghost" id="clearAllBtn" onclick="confirmClearAll()">Clear all tickets</button>
+  </div>
+  <div class="tickets-list" id="ticketsList"></div>
+</main>
+
+<!-- toast -->
+<div class="toast hidden" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
