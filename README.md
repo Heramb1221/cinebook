@@ -1,3 +1,5 @@
+why it is not working - simple ec2 instance is stopped cause i am broke
+
 # CineBook — Movie Ticket Booking Platform
 
 A full-stack movie ticket booking app inspired by BookMyShow: browse now-showing movies,
