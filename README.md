@@ -240,6 +240,17 @@ python -m http.server 8080
 
 ---
 
+# Screenshots
+
+| Feature | Preview |
+|----------|---------|
+| Home Page | <img width="1897" height="858" alt="image" src="https://github.com/user-attachments/assets/70afff9a-e29e-401b-a2d3-9d5e857ae118" /> |
+| Movie Catalogue | <img width="1892" height="857" alt="image" src="https://github.com/user-attachments/assets/b1ae6d75-a698-432b-9627-24da5510407e" /> |
+| Seat Selection | <img width="1897" height="857" alt="image" src="https://github.com/user-attachments/assets/17309744-c1b4-447d-bc1e-b49fc88fd7fc" /> |
+| Booking Confirmation | <img width="541" height="622" alt="image" src="https://github.com/user-attachments/assets/a20ec382-3774-42e0-826b-a021665cf342" /> |
+
+---
+
 # Performance Considerations
 
 ## Optimizations
